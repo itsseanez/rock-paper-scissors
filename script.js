@@ -25,37 +25,45 @@ choices.forEach((choice) => {
         humanChoice = choice.textContent;
         playRound(humanChoice, getComputerChoice());
         runningScore.textContent = `Human Score: ${humanScore} -- Computer Score: ${computerScore}`;
+        if (humanScore >= 5 || computerScore >= 5) {
+            if (humanScore >=5) {
+                gameWinner.textContent = "You win human";
+            } else {
+                gameWinner.textContent = "You lose human... Try again next time.";
+            }
+        }
     });
 });
 
 const runningScore = document.querySelector('#runningScore');
+const gameWinner = document.querySelector('#gameWinner');
 
 function playRound(humanChoice, computerChoice) {
     humanChoice = humanChoice.toLowerCase();
     if (humanChoice === computerChoice) {
-        console.log("It's a tie.")
+        gameWinner.textContent = "It's a tie.";
     } else if (humanChoice === 'rock') {
         if (computerChoice === 'paper') {
-            console.log("You lose! Paper beats Rock.")
+            gameWinner.textContent = "You lose! Paper beats Rock.";
             computerScore++
         } else {
-            console.log("You win! Rock beats Scissors.")
+            gameWinner.textContent = "You win! Rock beats Scissors.";
             humanScore++
         }
     } else if (humanChoice === 'paper') {
         if (computerChoice === 'scissors') {
-            console.log("You lose! Scissors beats Paper.")
+            gameWinner.textContent = "You lose! Scissors beats Paper.";
             computerScore++
         } else {
-            console.log("You win! Paper beats Rock.")
+            gameWinner.textContent = "You win! Paper beats Rock.";
             humanScore++
         }
     } else if (humanChoice === 'scissors') {
         if (computerChoice === 'rock') {
-            console.log("You lose! Rock beats Scissors.")
+            gameWinner.textContent = "You lose! Rock beats Scissors.";
             computerScore++
         } else {
-            console.log("You win! Scissors beats Paper.")
+            gameWinner.textContent = "You win! Scissors beats Paper.";
             humanScore++
         }
     }
